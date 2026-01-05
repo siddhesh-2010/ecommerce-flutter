@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/cart_controller.dart';
 import '../routes/routes.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CartApp extends StatefulWidget {
   const CartApp({super.key});
@@ -17,10 +18,10 @@ class _CartAppState extends State<CartApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: const Text(
+        backgroundColor: Colors.blueAccent,
+        title: Text(
           "Amazon",
-          style: TextStyle(
+          style: GoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -51,9 +52,9 @@ class _CartAppState extends State<CartApp> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 "Your Cart",
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),
@@ -65,9 +66,9 @@ class _CartAppState extends State<CartApp> {
                 child: Obx(
                   () {
                     if (controller.isCartEmpty) {
-                      return const Center(
+                      return Center(
                         child: Text("Your Cart is Empty",
-                            style: TextStyle(
+                            style: GoogleFonts.poppins(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
                             )),
@@ -103,7 +104,7 @@ class _CartAppState extends State<CartApp> {
                                     children: [
                                       Text(
                                         product.title,
-                                        style: const TextStyle(
+                                        style: GoogleFonts.poppins(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -113,7 +114,7 @@ class _CartAppState extends State<CartApp> {
                                       const SizedBox(height: 5),
                                       Text(
                                         'Rs.${product.price}',
-                                        style: const TextStyle(
+                                        style: GoogleFonts.poppins(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -121,7 +122,7 @@ class _CartAppState extends State<CartApp> {
                                       const SizedBox(height: 5),
                                       Text(
                                         product.description,
-                                        style: const TextStyle(
+                                        style: GoogleFonts.poppins(
                                           fontSize: 14,
                                         ),
                                         maxLines: 2,
@@ -149,7 +150,7 @@ class _CartAppState extends State<CartApp> {
                                           ),
                                           Obx(() => Text(
                                                 '${cartItem.quantity.value}',
-                                                style: const TextStyle(
+                                                style: GoogleFonts.poppins(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.bold,
                                                 ),
@@ -167,7 +168,7 @@ class _CartAppState extends State<CartApp> {
                                       Obx(
                                         () => Text(
                                           'Total: Rs.${cartItem.totalPrice}',
-                                          style: const TextStyle(
+                                          style: GoogleFonts.poppins(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -206,14 +207,14 @@ class _CartAppState extends State<CartApp> {
                     children: [
                       Text(
                         'Total (${controller.totalItems} items)',
-                        style: const TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
                         'Rs.${controller.totalPrice}',
-                        style: const TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue,
@@ -240,9 +241,9 @@ class _CartAppState extends State<CartApp> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: const Text(
+                  child: Text(
                     'Clear Cart',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),

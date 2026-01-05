@@ -2,6 +2,7 @@ import '../controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../routes/routes.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginApp extends StatefulWidget {
   const LoginApp({super.key});
@@ -17,18 +18,18 @@ class _LoginAppState extends State<LoginApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Amazon",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         backgroundColor: Colors.blue,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Get.toNamed(Routes.register);
-          },
-        ),
+        // leading: IconButton(
+        //   icon: const Icon(Icons.arrow_back),
+        //   onPressed: () {
+        //     Get.toNamed(Routes.register);
+        //   },
+        // ),
       ),
       body: Container(
         width: double.infinity,
@@ -49,21 +50,35 @@ class _LoginAppState extends State<LoginApp> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Login",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-            ),
             const SizedBox(height: 100),
             Container(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
+              decoration: BoxDecoration(
+                color: Colors.blueAccent,
+                borderRadius: BorderRadius.circular(10),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Center(
+                    child: Text(
+                      "Login",
+                      style: GoogleFonts.poppins(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 80),
                   Row(
                     children: [
-                      const Text(
+                      Text(
                         "Email: ",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w600),
+                        style: GoogleFonts.poppins(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
                       ),
                       const SizedBox(width: 10),
                       Expanded(
@@ -74,12 +89,13 @@ class _LoginAppState extends State<LoginApp> {
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: TextField(
-                            style: const TextStyle(fontSize: 18),
+                            style: GoogleFonts.poppins(fontSize: 15),
                             controller: controller.emailController,
                             keyboardType: TextInputType.emailAddress,
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               hintText: "Enter Your Email Address",
-                              hintStyle: TextStyle(color: Colors.grey),
+                              hintStyle:
+                                  GoogleFonts.poppins(color: Colors.grey),
                               border: InputBorder.none,
                             ),
                           ),
@@ -90,10 +106,12 @@ class _LoginAppState extends State<LoginApp> {
                   const SizedBox(height: 20),
                   Row(
                     children: [
-                      const Text(
+                      Text(
                         "Password: ",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w600),
+                        style: GoogleFonts.poppins(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
                       ),
                       const SizedBox(width: 10),
                       Expanded(
@@ -104,12 +122,13 @@ class _LoginAppState extends State<LoginApp> {
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: TextField(
-                            style: const TextStyle(fontSize: 18),
+                            style: GoogleFonts.poppins(fontSize: 15),
                             controller: controller.passwordController,
                             keyboardType: TextInputType.visiblePassword,
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               hintText: "Enter Your Password",
-                              hintStyle: TextStyle(color: Colors.grey),
+                              hintStyle:
+                                  GoogleFonts.poppins(color: Colors.grey),
                               border: InputBorder.none,
                             ),
                             obscureText: true,
@@ -125,14 +144,17 @@ class _LoginAppState extends State<LoginApp> {
             Obx(() => Center(
                     child: Text(
                   controller.errormessage.value,
-                  style: const TextStyle(color: Colors.red),
+                  style: GoogleFonts.poppins(color: Colors.red),
                 ))),
             const SizedBox(height: 10),
             TextButton(
               onPressed: () {
                 Get.toNamed(Routes.register);
               },
-              child: const Text("Don't have an account? Register here.", style: TextStyle(fontWeight: FontWeight.bold),),
+              child: Text(
+                "Don't have an account? Register here.",
+                style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+              ),
             ),
             const Spacer(),
             SizedBox(
@@ -147,9 +169,9 @@ class _LoginAppState extends State<LoginApp> {
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Center(
-                    child: const Text(
+                    child: Text(
                       "Submit",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.blue,

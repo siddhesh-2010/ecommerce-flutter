@@ -3,6 +3,7 @@ import '../routes/routes.dart';
 import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
 import '../controllers/logout_controller.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeApp extends StatefulWidget {
   const HomeApp({super.key});
@@ -38,9 +39,9 @@ class _HomeAppState extends State<HomeApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Products",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.blue,
         centerTitle: true,
@@ -118,7 +119,7 @@ class _HomeAppState extends State<HomeApp> {
                                     product.title,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -126,7 +127,7 @@ class _HomeAppState extends State<HomeApp> {
                                   const SizedBox(height: 5),
                                   Text(
                                     'Rs.${product.price}',
-                                    style: const TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                     ),

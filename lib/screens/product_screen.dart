@@ -3,7 +3,7 @@ import "package:get/get.dart";
 import "../routes/routes.dart";
 import "../models/products.dart";
 import '../controllers/cart_controller.dart';
-import "../services/store.dart";
+import 'package:google_fonts/google_fonts.dart';
 
 class ProductApp extends StatefulWidget {
   const ProductApp({super.key});
@@ -37,9 +37,9 @@ class _ProductAppState extends State<ProductApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Amazon",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         backgroundColor: Colors.blue,
@@ -96,7 +96,7 @@ class _ProductAppState extends State<ProductApp> {
                 const SizedBox(height: 20),
                 Text(
                   product.title,
-                  style: const TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
@@ -104,15 +104,15 @@ class _ProductAppState extends State<ProductApp> {
                 const SizedBox(height: 10),
                 Text(
                   'Rs.${product.price}',
-                  style: const TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 15),
-                const Text(
+                Text(
                   'Description',
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
@@ -120,7 +120,7 @@ class _ProductAppState extends State<ProductApp> {
                 const SizedBox(height: 8),
                 Text(
                   product.description,
-                  style: const TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 18,
                     color: Color.fromARGB(255, 45, 45, 45),
                   ),
@@ -128,7 +128,7 @@ class _ProductAppState extends State<ProductApp> {
                 const SizedBox(height: 20),
                 Text(
                   'Category: ${product.category.name}',
-                  style: const TextStyle(fontSize: 16),
+                  style: GoogleFonts.poppins(fontSize: 16),
                 ),
                 const SizedBox(height: 30),
                 Obx(() {
@@ -148,7 +148,7 @@ class _ProductAppState extends State<ProductApp> {
                                 ),
                                 Text(
                                   '${cartItem?.quantity.value}',
-                                  style: const TextStyle(
+                                  style: GoogleFonts.poppins(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -174,9 +174,9 @@ class _ProductAppState extends State<ProductApp> {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
-                              child: const Text(
+                              child: Text(
                                 'Add to Cart',
-                                style: TextStyle(
+                                style: GoogleFonts.poppins(
                                     fontSize: 16, fontWeight: FontWeight.bold),
                               ),
                             ));

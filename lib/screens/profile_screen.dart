@@ -4,6 +4,7 @@ import '../controllers/profile_controller.dart';
 import '../routes/routes.dart';
 import '../controllers/logout_controller.dart';
 import '../controllers/delete_user_controller.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProfileApp extends StatelessWidget {
   ProfileApp({super.key});
@@ -16,7 +17,7 @@ class ProfileApp extends StatelessWidget {
     controller.loadProfile();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
+        title: Text("Profile"),
         backgroundColor: Colors.blue,
         centerTitle: true,
         leading: IconButton(
@@ -54,9 +55,9 @@ class ProfileApp extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            const Text(
+            Text(
               "ID",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 7),
             Container(
@@ -68,7 +69,7 @@ class ProfileApp extends StatelessWidget {
               child: TextField(
                 controller: controller.idController,
                 enabled: false,
-                style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+                style: GoogleFonts.poppins(color: Colors.black, fontWeight: FontWeight.w500),
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                   contentPadding:
@@ -77,9 +78,9 @@ class ProfileApp extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            const Text(
+            Text(
               "Name",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 7),
             Container(
@@ -91,7 +92,7 @@ class ProfileApp extends StatelessWidget {
               child: TextField(
                 controller: controller.nameController,
                 enabled: false,
-                style: const TextStyle(color: Colors.black,fontWeight: FontWeight.w500),
+                style: GoogleFonts.poppins(color: Colors.black,fontWeight: FontWeight.w500),
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                   contentPadding:
@@ -100,9 +101,9 @@ class ProfileApp extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
+            Text(
               "Email",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 7),
             Container(
@@ -114,7 +115,7 @@ class ProfileApp extends StatelessWidget {
               child: TextField(
                 controller: controller.emailController,
                 enabled: false,
-                style: const TextStyle(color: Colors.black,fontWeight: FontWeight.w500),
+                style: GoogleFonts.poppins(color: Colors.black,fontWeight: FontWeight.w500),
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                   contentPadding:
@@ -133,9 +134,9 @@ class ProfileApp extends StatelessWidget {
                   backgroundColor: Colors.red,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                 ),
-                child: const Text(
+                child: Text(
                   "Logout",
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -154,9 +155,9 @@ class ProfileApp extends StatelessWidget {
                   backgroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                 ),
-                child: const Text(
+                child: Text(
                   "Delete Account",
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.red,
