@@ -3,14 +3,14 @@ import 'package:get/get.dart';
 import '../controllers/profile_controller.dart';
 import '../routes/routes.dart';
 import '../controllers/logout_controller.dart';
-import '../controllers/delete_user_controller.dart';
+import '../controllers/user_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileApp extends StatelessWidget {
   ProfileApp({super.key});
   final ProfileController controller = Get.put(ProfileController());
-  final DeleteUserController deleteUserController =
-      Get.put(DeleteUserController());
+  final UserController userController =
+      Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class ProfileApp extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Profile"),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.blueAccent,
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -91,7 +91,7 @@ class ProfileApp extends StatelessWidget {
               ),
               child: TextField(
                 controller: controller.nameController,
-                enabled: false,
+                enabled: true,
                 style: GoogleFonts.poppins(color: Colors.black,fontWeight: FontWeight.w500),
                 decoration: const InputDecoration(
                   border: InputBorder.none,
@@ -114,7 +114,7 @@ class ProfileApp extends StatelessWidget {
               ),
               child: TextField(
                 controller: controller.emailController,
-                enabled: false,
+                enabled: true,
                 style: GoogleFonts.poppins(color: Colors.black,fontWeight: FontWeight.w500),
                 decoration: const InputDecoration(
                   border: InputBorder.none,
@@ -128,14 +128,14 @@ class ProfileApp extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Get.find<LogoutController>().logout();
+                  userController.updateUser(controller.idController.text);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
+                  backgroundColor: Colors.blueAccent,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                 ),
                 child: Text(
-                  "Logout",
+                  "Update",
                   style: GoogleFonts.poppins(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -149,10 +149,10 @@ class ProfileApp extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  deleteUserController.deleteUser(controller.idController.text);
+                  userController.deleteUser(controller.idController.text);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
+                  backgroundColor: Colors.red,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                 ),
                 child: Text(
@@ -160,7 +160,7 @@ class ProfileApp extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Colors.red,
+                    color: Colors.white,
                   ),
                 ),
               ),
