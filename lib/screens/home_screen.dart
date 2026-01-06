@@ -45,114 +45,188 @@ class _HomeAppState extends State<HomeApp> {
         ),
         backgroundColor: Colors.blue,
         centerTitle: true,
-        leading: IconButton(
+        // leading: IconButton(
+        //   icon: const Icon(Icons.logout),
+        //   onPressed: () {
+        //     Get.find<LogoutController>().logout();
+        //   },
+        // ),
+        actions: [
+          // IconButton(
+          //   onPressed: () {
+          //     Get.toNamed(Routes.cart);
+          //   },
+          //   icon: const Icon(Icons.shopping_cart),
+          // ),
+          // IconButton(
+          //     onPressed: () {
+          //       Get.toNamed(Routes.profile);
+          //     },
+          //     icon: const Icon(Icons.person))
+          IconButton(
           icon: const Icon(Icons.logout),
           onPressed: () {
             Get.find<LogoutController>().logout();
           },
         ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Get.toNamed(Routes.cart);
-            },
-            icon: const Icon(Icons.shopping_cart),
-          ),
-          IconButton(onPressed: (){
-            Get.toNamed(Routes.profile);
-          }, icon: const Icon(Icons.person))
         ],
       ),
-        body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Obx(() {
-          if (controller.isLoading.value) {
-            return const Center(child: CircularProgressIndicator());
-          }
-
-          return Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                decoration: BoxDecoration(
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: const BoxDecoration(
+                color: Colors.blueAccent,
+              ),
+              child: Text(
+                'Menu',
+                style: GoogleFonts.poppins(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
+                  fontSize: 24,
                 ),
-                child: TextField(
-                  onChanged: controller.searchProducts,
-                  decoration: const InputDecoration(
-                    hintText: 'Search Products',
-                    border: InputBorder.none,
-                    prefixIcon: Icon(Icons.search),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.shopping_cart),
+              title: Text(
+                'Cart',
+                style: GoogleFonts.poppins(),
+              ),
+              onTap: () {
+                Get.toNamed(Routes.home);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: Text(
+                'Profile',
+                style: GoogleFonts.poppins(),
+              ),
+              onTap: () {
+                Get.toNamed(Routes.profile);
+              },
+            ),
+          ],
+        ),
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Colors.white,
+              Color.fromARGB(255, 214, 229, 255),
+              Color.fromARGB(255, 193, 216, 255),
+              Colors.blueAccent,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Obx(() {
+            if (controller.isLoading.value) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            return Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: TextField(
+                    onChanged: controller.searchProducts,
+                    decoration: const InputDecoration(
+                      hintText: 'Search Products',
+                      border: InputBorder.none,
+                      prefixIcon: Icon(Icons.search),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 15),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: controller.filteredProducts.length,
-                  itemBuilder: (context, index) {
-                    final product = controller.filteredProducts[index];
-
-                    return GestureDetector(
-                      onTap: () {
-                        Get.toNamed(Routes.product, arguments: product);
-                      },
-                      child: Card(
-                        margin: const EdgeInsets.only(bottom: 15),
-                        elevation: 3,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.network(
-                              product.imageUrl,
-                              height: 150,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(12),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    product.title,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
+                const SizedBox(height: 15),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: controller.filteredProducts.length,
+                    itemBuilder: (context, index) {
+                      final product = controller.filteredProducts[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Get.toNamed(Routes.product, arguments: product);
+                        },
+                        child: Card(
+                          margin: const EdgeInsets.only(bottom: 15),
+                          elevation: 3,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 100,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    image: DecorationImage(
+                                      image: NetworkImage(product.imageUrl),
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
-                                  const SizedBox(height: 5),
-                                  Text(
-                                    'Rs.${product.price}',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(12),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              product.title,
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 5),
+                                            Text(
+                                              'Rs.${product.price}',
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 5),
+                                            Text(
+                                              product.description,
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  const SizedBox(height: 5),
-                                  Text(
-                                    product.description,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
-          );
-        }),
+              ],
+            );
+          }),
+        ),
       ),
-
     );
   }
 }
