@@ -1,6 +1,7 @@
 import 'package:demo_login/services/store.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import '../controllers/profile_controller.dart';
 import '../routes/routes.dart';
 import '../controllers/logout_controller.dart';
@@ -23,15 +24,18 @@ class _ProfileAppState extends State<ProfileApp> {
   @override
   void initState() {
     super.initState();
-    controller.loadProfile();
-    controller.loadProfileImage();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      controller.loadProfile();
+      controller.loadProfileImage();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profile"),
+        title: Text("Profile",
+            style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
         backgroundColor: Colors.blueAccent,
         centerTitle: true,
         leading: IconButton(
@@ -41,9 +45,11 @@ class _ProfileAppState extends State<ProfileApp> {
           },
         ),
         actions: [
-          IconButton(onPressed: (){
-            Get.find<LogoutController>().logout();
-          }, icon: Icon(Icons.logout))
+          IconButton(
+              onPressed: () {
+                Get.find<LogoutController>().logout();
+              },
+              icon: Icon(Icons.logout))
         ],
       ),
       body: Container(
@@ -66,16 +72,23 @@ class _ProfileAppState extends State<ProfileApp> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Text(controller.avatarPath.value),
-            Center(
-                child: Obx(() => CircleAvatar(
-                      radius: 50,
-                      backgroundImage: controller.avatarPath.value.isNotEmpty
-                          ? FileImage(File(controller.avatarPath.value))
-                          : null,
-                      child: controller.avatarPath.value.isEmpty
-                          ?  Image.network(controller.avatarController.text)
-                          : null,
-                    ))),
+            GestureDetector(
+              onTap: () async {
+                final id = await Store.getUserId();
+                final ImagePicker picker = ImagePicker();
+                final XFile? image =
+                    await picker.pickImage(source: ImageSource.gallery);
+                ProfileStore.storeProfileImage(image?.path ?? '', id ?? 0);
+              },
+              child: Center(
+                  child: Obx(() => CircleAvatar(
+                        radius: 50,
+                        backgroundImage: controller.avatarPath.value.isNotEmpty
+                            ? FileImage(File(controller.avatarPath.value))
+                            : NetworkImage(controller.avatarController.text)
+                                as ImageProvider,
+                      ))),
+            ),
             const SizedBox(height: 10),
             Text(
               "ID",
@@ -152,8 +165,12 @@ class _ProfileAppState extends State<ProfileApp> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  userController.updateUser(controller.idController.text);
+                onPressed: () async {
+                  final id = await Store.getUserId();
+
+                  print(
+                      'THe value 9s ${await ProfileStore.getProfileImage(id ?? 0)}');
+                  // userController.updateUser(controller.idController.text);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blueAccent,

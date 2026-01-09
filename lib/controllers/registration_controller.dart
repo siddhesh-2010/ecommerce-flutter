@@ -19,7 +19,7 @@ class RegistrationController extends GetxController {
     final name = nameController.text;
     final email = emailController.text;
     final password = passwordController.text;
-    String user ="https://cdn-icons-png.flaticon.com/512/1246/1246351.png";
+    String user ="https://api.escuelajs.co/api/v1/files/acd6.png";
 
     if (name.isEmpty || email.isEmpty || password.isEmpty) {
       errorMessage.value = "Please fill everything!";
@@ -48,7 +48,9 @@ class RegistrationController extends GetxController {
         // final name = data["name"];
         // final email = data["email"];
         // Store.storeUserData("id", id);
-
+        if(selectedImage.value !=null){
+          ProfileStore.storeProfileImage(selectedImage.value!.path, id);
+        }
         if (id != null) {
           Get.offNamed('/login');
         } else {
@@ -70,7 +72,7 @@ class RegistrationController extends GetxController {
 
     if (image != null) {
       selectedImage.value = File(image.path);
-      ProfileStore.storeProfileImage(image.path, await Store.getUserId() ?? 0);
+      // ProfileStore.storeProfileImage(image.path, await Store.getUserId() ?? 0);
     }
   }
 

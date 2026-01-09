@@ -94,7 +94,7 @@ class _HomeAppState extends State<HomeApp> {
                 style: GoogleFonts.poppins(),
               ),
               onTap: () {
-                Get.toNamed(Routes.home);
+                Get.toNamed(Routes.cart);
               },
             ),
             ListTile(

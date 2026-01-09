@@ -50,6 +50,7 @@ class ProfileController extends GetxController {
     if (userId == null) return;
 
     final imagePath = await ProfileStore.getProfileImage(userId);
+    print("Loaded image path: $imagePath");
     if (imagePath != null) {
       avatarPath.value = imagePath; 
     }
