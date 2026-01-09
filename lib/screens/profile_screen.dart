@@ -1,3 +1,4 @@
+import 'package:demo_login/services/store.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/profile_controller.dart';
@@ -5,16 +6,31 @@ import '../routes/routes.dart';
 import '../controllers/logout_controller.dart';
 import '../controllers/user_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../services/profile_store.dart';
+import 'dart:io';
 
-class ProfileApp extends StatelessWidget {
-  ProfileApp({super.key});
+
+class ProfileApp extends StatefulWidget {
+  const ProfileApp({super.key});
+
+  @override
+  State<ProfileApp> createState() => _ProfileAppState();
+}
+
+class _ProfileAppState extends State<ProfileApp> {
   final ProfileController controller = Get.put(ProfileController());
-  final UserController userController =
-      Get.put(UserController());
+  final UserController userController = Get.put(UserController());
+
+   @override
+  void initState() {
+    super.initState();
+    controller.loadProfile();
+    controller.loadProfileImage();
+  }
 
   @override
   Widget build(BuildContext context) {
-    controller.loadProfile();
+    
     return Scaffold(
       appBar: AppBar(
         title: Text("Profile"),
@@ -49,8 +65,8 @@ class ProfileApp extends StatelessWidget {
             Center(
               child: CircleAvatar(
                 radius: 50,
-                backgroundImage: NetworkImage(
-                  controller.avatarController.text,
+                backgroundImage: FileImage(
+                  File(controller.avatarController.text),
                 ),
               ),
             ),
@@ -171,3 +187,10 @@ class ProfileApp extends StatelessWidget {
     );
   }
 }
+
+// class ProfileApp extends StatelessWidget {
+//   ProfileApp({super.key});
+
+
+  
+// }

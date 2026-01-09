@@ -43,7 +43,7 @@ class _HomeAppState extends State<HomeApp> {
           "Products",
           style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.blueAccent,
         centerTitle: true,
         // leading: IconButton(
         //   icon: const Icon(Icons.logout),
