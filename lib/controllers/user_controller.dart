@@ -10,7 +10,7 @@ class UserController extends GetxController {
   final RxBool isLoading = false.obs;
   // final id = Get.find<ProfileController>().idController.text;
 
-    final ProfileController controller = Get.find<ProfileController>();
+  final ProfileController controller = Get.find<ProfileController>();
 
   Future<void> deleteUser(String id) async {
     isLoading.value = true;

@@ -46,9 +46,9 @@ class _HomeAppState extends State<HomeApp> {
         backgroundColor: Colors.blueAccent,
         centerTitle: true,
         // leading: IconButton(
-        //   icon: const Icon(Icons.logout),
+        //   icon: const Icon(Icons.person),
         //   onPressed: () {
-        //     Get.find<LogoutController>().logout();
+        //      Get.toNamed(Routes.profile);
         //   },
         // ),
         actions: [
@@ -136,6 +136,14 @@ class _HomeAppState extends State<HomeApp> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        spreadRadius: 1,
+                        blurRadius: 4,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
                   ),
                   child: TextField(
                     onChanged: controller.searchProducts,

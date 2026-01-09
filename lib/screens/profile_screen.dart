@@ -6,9 +6,8 @@ import '../routes/routes.dart';
 import '../controllers/logout_controller.dart';
 import '../controllers/user_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../services/profile_store.dart';
+import '../services/profile_img_store.dart';
 import 'dart:io';
-
 
 class ProfileApp extends StatefulWidget {
   const ProfileApp({super.key});
@@ -21,7 +20,7 @@ class _ProfileAppState extends State<ProfileApp> {
   final ProfileController controller = Get.put(ProfileController());
   final UserController userController = Get.put(UserController());
 
-   @override
+  @override
   void initState() {
     super.initState();
     controller.loadProfile();
@@ -30,7 +29,6 @@ class _ProfileAppState extends State<ProfileApp> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         title: Text("Profile"),
@@ -42,6 +40,11 @@ class _ProfileAppState extends State<ProfileApp> {
             Get.toNamed(Routes.home);
           },
         ),
+        actions: [
+          IconButton(onPressed: (){
+            Get.find<LogoutController>().logout();
+          }, icon: Icon(Icons.logout))
+        ],
       ),
       body: Container(
         width: double.infinity,
@@ -62,14 +65,17 @@ class _ProfileAppState extends State<ProfileApp> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Text(controller.avatarPath.value),
             Center(
-              child: CircleAvatar(
-                radius: 50,
-                backgroundImage: FileImage(
-                  File(controller.avatarController.text),
-                ),
-              ),
-            ),
+                child: Obx(() => CircleAvatar(
+                      radius: 50,
+                      backgroundImage: controller.avatarPath.value.isNotEmpty
+                          ? FileImage(File(controller.avatarPath.value))
+                          : null,
+                      child: controller.avatarPath.value.isEmpty
+                          ?  Image.network(controller.avatarController.text)
+                          : null,
+                    ))),
             const SizedBox(height: 10),
             Text(
               "ID",
@@ -79,13 +85,14 @@ class _ProfileAppState extends State<ProfileApp> {
             Container(
               decoration: BoxDecoration(
                 color: Colors.white,
-                border: Border.all(color: Colors.black, width: 2),
+                border: Border.all(color: Colors.blueAccent, width: 1),
                 borderRadius: BorderRadius.circular(5),
               ),
               child: TextField(
                 controller: controller.idController,
                 enabled: false,
-                style: GoogleFonts.poppins(color: Colors.black, fontWeight: FontWeight.w500),
+                style: GoogleFonts.poppins(
+                    color: Colors.black, fontWeight: FontWeight.w500),
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                   contentPadding:
@@ -102,13 +109,14 @@ class _ProfileAppState extends State<ProfileApp> {
             Container(
               decoration: BoxDecoration(
                 color: Colors.white,
-                border: Border.all(color: Colors.black, width: 2),
+                border: Border.all(color: Colors.blueAccent, width: 1),
                 borderRadius: BorderRadius.circular(5),
               ),
               child: TextField(
                 controller: controller.nameController,
                 enabled: true,
-                style: GoogleFonts.poppins(color: Colors.black,fontWeight: FontWeight.w500),
+                style: GoogleFonts.poppins(
+                    color: Colors.black, fontWeight: FontWeight.w500),
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                   contentPadding:
@@ -125,13 +133,14 @@ class _ProfileAppState extends State<ProfileApp> {
             Container(
               decoration: BoxDecoration(
                 color: Colors.white,
-                border: Border.all(color: Colors.black, width: 2),
+                border: Border.all(color: Colors.blueAccent, width: 1),
                 borderRadius: BorderRadius.circular(5),
               ),
               child: TextField(
                 controller: controller.emailController,
                 enabled: true,
-                style: GoogleFonts.poppins(color: Colors.black,fontWeight: FontWeight.w500),
+                style: GoogleFonts.poppins(
+                    color: Colors.black, fontWeight: FontWeight.w500),
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                   contentPadding:
@@ -191,6 +200,4 @@ class _ProfileAppState extends State<ProfileApp> {
 // class ProfileApp extends StatelessWidget {
 //   ProfileApp({super.key});
 
-
-  
 // }

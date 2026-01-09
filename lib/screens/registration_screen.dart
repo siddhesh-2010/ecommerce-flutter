@@ -78,113 +78,95 @@ class _RegistrationAppState extends State<RegistrationApp> {
                       child: Text(
                         "Registration",
                         style: GoogleFonts.poppins(
-                            fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
+                            fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                     ),
                     const SizedBox(height: 30),
-                    Row(
-                      children: [
-                        Text(
-                          "Name: ",
-                          style: GoogleFonts.poppins(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white),
+                    Text(
+                      "Name",
+                      style: GoogleFonts.poppins(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white),
+                    ),
+                    const SizedBox(width: 10),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: TextField(
+                        style: GoogleFonts.poppins(fontSize: 15),
+                        controller: controller.nameController,
+                        keyboardType: TextInputType.name,
+                        decoration: InputDecoration(
+                          hintText: "Enter Your Name",
+                          hintStyle:
+                              GoogleFonts.poppins(color: Colors.grey),
+                          border: InputBorder.none,
                         ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: TextField(
-                              style: GoogleFonts.poppins(fontSize: 15),
-                              controller: controller.nameController,
-                              keyboardType: TextInputType.name,
-                              decoration: InputDecoration(
-                                hintText: "Enter Your Name",
-                                hintStyle:
-                                    GoogleFonts.poppins(color: Colors.grey),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                     const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Text(
-                          "Email: ",
-                          style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white),
-                        ),
-                        const SizedBox(height: 10),
-                        Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: TextField(
-                              style: GoogleFonts.poppins(fontSize: 15),
-                              controller: controller.emailController,
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                hintText: "Enter Your Email Address",
-                                hintStyle:
-                                    GoogleFonts.poppins(color: Colors.grey),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                    Text(
+                      "Email: ",
+                      style: GoogleFonts.poppins(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white),
                     ),
                     const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Text(
-                          "Password: ",
-                          style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: TextField(
+                        style: GoogleFonts.poppins(fontSize: 15),
+                        controller: controller.emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          hintText: "Enter Your Email Address",
+                          hintStyle:
+                              GoogleFonts.poppins(color: Colors.grey),
+                          border: InputBorder.none,
                         ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: TextField(
-                              style: GoogleFonts.poppins(fontSize: 15),
-                              controller: controller.passwordController,
-                              keyboardType: TextInputType.visiblePassword,
-                              decoration: InputDecoration(
-                                hintText: "Enter Your Password",
-                                hintStyle:
-                                    GoogleFonts.poppins(color: Colors.grey),
-                                border: InputBorder.none,
-                              ),
-                              obscureText: true,
-                            ),
-                          ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      "Password: ",
+                      style: GoogleFonts.poppins(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white),
+                    ),
+                    const SizedBox(width: 10),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: TextField(
+                        style: GoogleFonts.poppins(fontSize: 15),
+                        controller: controller.passwordController,
+                        keyboardType: TextInputType.visiblePassword,
+                        decoration: InputDecoration(
+                          hintText: "Enter Your Password",
+                          hintStyle:
+                              GoogleFonts.poppins(color: Colors.grey),
+                          border: InputBorder.none,
                         ),
-                      ],
+                        obscureText: true,
+                      ),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 5),
               Obx(() => Center(
                       child: Text(
                     controller.errorMessage.value,

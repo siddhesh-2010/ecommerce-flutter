@@ -32,6 +32,7 @@ class _CartAppState extends State<CartApp> {
               Get.back();
             },
             icon: const Icon(Icons.arrow_back)),
+        
       ),
       body: Container(
           padding: const EdgeInsets.all(15),

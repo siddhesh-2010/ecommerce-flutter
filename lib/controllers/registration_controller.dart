@@ -4,7 +4,7 @@ import '../services/dio_api.dart';
 import '../services/store.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-import '../services/profile_store.dart';
+import '../services/profile_img_store.dart';
 
 class RegistrationController extends GetxController {
   final TextEditingController nameController = TextEditingController();

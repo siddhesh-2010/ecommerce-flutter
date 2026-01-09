@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../services/dio_api.dart';
 import '../services/store.dart';
-import '../services/profile_store.dart';
+import '../services/profile_img_store.dart';
 
 class ProfileController extends GetxController {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController avatarController = TextEditingController();
   final TextEditingController idController = TextEditingController();
+  final RxString avatarPath = "".obs;
 
   final RxString errorMessage = "".obs;
   final RxBool isLoading = false.obs;
@@ -32,7 +33,7 @@ class ProfileController extends GetxController {
         final data = response.data;
         nameController.text = data['name'] ?? '';
         emailController.text = data['email'] ?? '';
-        // avatarController.text = data['avatar'] ?? '';
+        avatarController.text = data['avatar'] ?? '';
         idController.text = data['id']?.toString() ?? '';
       } else {
         errorMessage.value = "Failed to load profile";
@@ -50,7 +51,7 @@ class ProfileController extends GetxController {
 
     final imagePath = await ProfileStore.getProfileImage(userId);
     if (imagePath != null) {
-      avatarController.text = imagePath;
+      avatarPath.value = imagePath; 
     }
   }
 }
